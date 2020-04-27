@@ -1,3 +1,3 @@
 # Hahaha
 
-Frank's first repository!
+Second commit.
