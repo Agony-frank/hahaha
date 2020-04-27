@@ -1,3 +1,3 @@
-# Hahaha2
+# SGS
 
-Second commit.
+Simple SanGuaSha game.
