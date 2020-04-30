@@ -43,6 +43,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			HDC hdc;
 			
 			hdc = BeginPaint(hWnd, &ps);
+
+			// draw here
+
 			EndPaint(hWnd, &ps);
 			break;
 		}
