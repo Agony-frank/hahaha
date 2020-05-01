@@ -2,11 +2,12 @@
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdShow) {
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdShow)
+{
 	WNDCLASSEX wce;
 	HWND hWnd;
 	MSG msg;
-	
+
 	ZeroMemory(&wce, sizeof(wce));
 	wce.cbSize = sizeof(wce);
 	wce.lpfnWndProc = WndProc;
@@ -17,18 +18,21 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdSh
 	wce.lpszClassName = "WindowClass";
 	wce.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
-	if (!RegisterClassEx(&wce)) {
+	if (!RegisterClassEx(&wce))
+	{
 		return 0;
 	}
 
 	hWnd = CreateWindowEx(WS_EX_CLIENTEDGE, "WindowClass", "Title", WS_VISIBLE | WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, 640, 480, NULL, NULL, hInst, NULL);
+						  CW_USEDEFAULT, CW_USEDEFAULT, 640, 480, NULL, NULL, hInst, NULL);
 
-	if (!hWnd) {
+	if (!hWnd)
+	{
 		return 0;
 	}
 
-	while (GetMessage(&msg, NULL, 0, 0)) {
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
@@ -36,52 +40,60 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdSh
 	return msg.wParam;
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	switch(uMsg) {
-		case WM_PAINT: {
-			PAINTSTRUCT ps;
-			HDC hdc;
-			
-			hdc = BeginPaint(hWnd, &ps);
+LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch (uMsg)
+	{
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		HDC hdc;
 
-			// draw here
+		hdc = BeginPaint(hWnd, &ps);
 
-			EndPaint(hWnd, &ps);
-			break;
-		}
-		case WM_SIZE: {
-			int width, height;
-			width = LOWORD(lParam);
-			height = HIWORD(lParam);
+		// draw here
 
-			break;
-		}
-		case WM_MOUSEMOVE: {
-			int x, y;
-			x = LOWORD(lParam);
-			y = HIWORD(lParam);
+		EndPaint(hWnd, &ps);
+		break;
+	}
+	case WM_SIZE:
+	{
+		int width, height;
+		width = LOWORD(lParam);
+		height = HIWORD(lParam);
 
-			break;
-		}
-		case WM_LBUTTONDOWN: {
-			int x, y;
-			x = LOWORD(lParam);
-			y = HIWORD(lParam);
+		break;
+	}
+	case WM_MOUSEMOVE:
+	{
+		int x, y;
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
 
-			break;
-		}
-		case WM_KEYDOWN: {
-			int key;
-			key = wParam;
+		break;
+	}
+	case WM_LBUTTONDOWN:
+	{
+		int x, y;
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
 
-			break;
-		}
-		case WM_DESTROY: {
-			PostQuitMessage(0);
-			break;
-		}
-		default:
-			return DefWindowProc(hWnd, uMsg, wParam, lParam);
+		break;
+	}
+	case WM_KEYDOWN:
+	{
+		int key;
+		key = wParam;
+
+		break;
+	}
+	case WM_DESTROY:
+	{
+		PostQuitMessage(0);
+		break;
+	}
+	default:
+		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
 	return 0;
 }
