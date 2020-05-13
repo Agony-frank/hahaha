@@ -7,16 +7,18 @@ typedef struct card {
 	int type;
 } card;
 
-struct player {
+typedef struct player {
 	int life;
 	int handCount;
 	card hand[110];
 	card equp[4];
 	card check[2];
-};
+} player;
 
 int heapTop;
 card heap[108];
+
+player players[2];
 
 void initHeap() {
 	int i;
