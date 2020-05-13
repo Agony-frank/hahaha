@@ -17,7 +17,6 @@ typedef struct player {
 
 int heapTop;
 card heap[108];
-
 player players[2];
 
 void initHeap() {
@@ -29,7 +28,16 @@ void initHeap() {
 }
 
 void genInitCard() {
-
+	for (int i = 0; i < 4; ++i)
+	{
+		players[0].hand[i] = heap[heapTop - 1];
+		heapTop -= 1;
+	}	
+ 	for (int i = 0; i < 4; ++i)
+	{
+		players[1].hand[i] = heap[heapTop - 1];
+		heapTop -= 1;
+	}
 }
 
 char message[100][100] = {
